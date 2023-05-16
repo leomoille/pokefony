@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <h2>Pokémon : {{ pokemons|length }}</h2>
+    <ul>
+        {% for pokemon in pokemons %}
+            <li>
+                <b>#{{ pokemon.number }} - {{ pokemon.name | capitalize }}</b>
+                <img src="{{ pokemon.sprite }}">
+                <br>
+                Types:
+                <ul>
+                    {% for type in pokemon.types %}
+                        <li>{{ type.name }}</li>
+                    {% endfor %}
+                </ul>
+                <br>
+                Moves:
+                <ul>
+                    {% for move in pokemon.moves %}
+                        <li>{{ move.name }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
