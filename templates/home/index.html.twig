@@ -1,31 +1,132 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Pokédex - PokéFony{% endblock %}
 
 {% block body %}
 
-    <h2>Pokémon : {{ pokemons|length }}</h2>
-    <ul>
-        {% for pokemon in pokemons %}
-            <li>
-                <b>#{{ pokemon.number }} - {{ pokemon.name | capitalize }}</b>
-                <img src="{{ pokemon.sprite }}">
-                <br>
-                Types:
-                <ul>
-                    {% for type in pokemon.types %}
-                        <li>{{ type.name }}</li>
-                    {% endfor %}
-                </ul>
-                <br>
-                Moves:
-                <ul>
-                    {% for move in pokemon.moves %}
-                        <li>{{ move.name }}</li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
+    <style>
+        .type {
+            display: block;
+            padding: 5px;
+            text-align: center;
+            width: auto;
+        }
+
+        .grass {
+            background-color: forestgreen;
+            color: white;
+        }
+
+        .poison {
+            background-color: purple;
+            color: white;
+        }
+
+        .fire {
+            background-color: orangered;
+            color: white;
+        }
+
+        .flying {
+            background-color: lightskyblue;
+            color: black;
+        }
+
+        .water {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .bug {
+            background-color: chartreuse;
+            color: black;
+        }
+
+        .normal {
+            background-color: floralwhite;
+            color: black;
+        }
+
+        .electric {
+            background-color: yellow;
+            color: black;
+        }
+
+        .ground {
+            background-color: sandybrown;
+            color: black;
+        }
+
+        .fairy {
+            background-color: deeppink;
+            color: black;
+        }
+
+        .fighting {
+            background-color: darkorange;
+            color: black;
+        }
+
+        .psychic {
+            background-color: hotpink;
+            color: white;
+        }
+
+        .rock {
+            background-color: saddlebrown;
+            color: white;
+        }
+
+        .steel {
+            background-color: slategray;
+            color: white;
+        }
+
+        .ice {
+            background-color: lightcyan;
+            color: black;
+        }
+
+        .ghost {
+            background-color: indigo;
+            color: white;
+        }
+
+        .dragon {
+            background-color: darkslateblue;
+            color: white;
+        }
+    </style>
+
+    <div class="container">
+        <h1 class="m-5 text-center">Pokédex</h1>
+        <div class="row">
+            {% for pokemon in pokemons %}
+                <div class="col-12 col-sm-4">
+                    <div class="card m-2">
+                        <img src="{{ pokemon.sprite }}" class="card-img-top" alt="{{ pokemon.name | capitalize }}">
+                        <div class="card-body">
+                            <h2 class="h5 card-title">#{{ pokemon.number }} - {{ pokemon.name | capitalize }}</h2>
+                            <div class="row">
+                                {% for type in pokemon.types %}
+                                    <div class="col">
+                                        <span class="type {{ type.name }}">{{ type.name | capitalize }}</span>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                            {#                            <ul class="list-group list-group-flush"> #}
+                            {#                                {% for move in pokemon.moves %} #}
+                            {#                                    <li class="list-group-item">{{ move.name }}</li> #}
+                            {#                                {% endfor %} #}
+                            {#                            </ul> #}
+                            {#                            <a href="#" class="btn btn-primary">Go somewhere</a> #}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
 
 {% endblock %}
