@@ -15,12 +15,12 @@ class AppFixtures extends Fixture
 {
     const TYPE_AMOUNT = 20;
     const MOVE_AMOUNT = 920;
-    const POKEMON_AMOUNT = 151;
+    const POKEMON_AMOUNT = 1010;
 
 
     public function __construct(
         private TypeRepository $typeRepository,
-        private MoveRepository $moveRepository
+        private MoveRepository $moveRepository,
     ) {
     }
 
@@ -58,7 +58,11 @@ class AppFixtures extends Fixture
 
         // Get Pokémon
         for ($i = 1; $i <= self::POKEMON_AMOUNT; $i++) {
-            $pokemonRequest = $client->request('GET', "https://pokeapi.co/api/v2/pokemon/$i");
+            $tryCount = 0;
+            do {
+                $pokemonRequest = $client->request('GET', "https://pokeapi.co/api/v2/pokemon/$i");
+                $tryCount++;
+            } while ($pokemonRequest->getStatusCode() == 403 or $tryCount === 10);
             $response = $pokemonRequest->getContent();
             $content = json_decode($response, true);
 
@@ -80,8 +84,6 @@ class AppFixtures extends Fixture
 
             $manager->persist($pokemon);
         }
-
-        // $manager->persist($product);
 
         $manager->flush();
     }
