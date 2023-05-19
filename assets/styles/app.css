@@ -1,0 +1,100 @@
+.pokemon-sprite {
+    image-rendering: pixelated;
+}
+
+.type {
+    display: block;
+    padding: 5px;
+    text-align: center;
+    width: auto;
+}
+
+.grass {
+    background-color: forestgreen;
+    color: white;
+}
+
+.poison {
+    background-color: purple;
+    color: white;
+}
+
+.fire {
+    background-color: orangered;
+    color: white;
+}
+
+.flying {
+    background-color: lightskyblue;
+    color: black;
+}
+
+.water {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.bug {
+    background-color: chartreuse;
+    color: black;
+}
+
+.normal {
+    background-color: floralwhite;
+    color: black;
+}
+
+.electric {
+    background-color: yellow;
+    color: black;
+}
+
+.ground {
+    background-color: sandybrown;
+    color: black;
+}
+
+.fairy {
+    background-color: deeppink;
+    color: black;
+}
+
+.fighting {
+    background-color: darkorange;
+    color: black;
+}
+
+.psychic {
+    background-color: hotpink;
+    color: white;
+}
+
+.rock {
+    background-color: saddlebrown;
+    color: white;
+}
+
+.steel {
+    background-color: slategray;
+    color: white;
+}
+
+.ice {
+    background-color: lightcyan;
+    color: black;
+}
+
+.ghost {
+    background-color: indigo;
+    color: white;
+}
+
+.dragon {
+    background-color: darkslateblue;
+    color: white;
+}
+
+.dark {
+    background-color: black;
+    color: white;
+}
