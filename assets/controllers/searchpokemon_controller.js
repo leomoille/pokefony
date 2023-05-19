@@ -11,6 +11,15 @@ import { Controller } from '@hotwired/stimulus';
  */
 export default class extends Controller {
     connect() {
-        this.element.textContent = 'Hello Stimulus! Edit me in assets/controllers/hello_controller.js';
+        console.log("connected");
     }
+
+    searchPokemon() {
+        console.log("Hello, Stimulus!", this.element)
+        fetch('../../?get_pokemon=1')
+        .then(function(response) {
+                console.log(response)
+            })
+        .catch(err => console.log(err))
+      }
 }

@@ -35,6 +35,14 @@ class PokemonRepository extends ServiceEntityRepository
         return new Paginator($query);
     }
 
+    public function getSpecificPokemon($str){
+        $query = $this->createQueryBuilder('p')
+            ->where("p.name = '".$str."'")
+            ->getQuery();
+        
+        return new Paginator($query);
+    }
+
     public function save(Pokemon $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
