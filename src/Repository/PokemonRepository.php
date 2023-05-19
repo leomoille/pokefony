@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Pokemon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,9 +17,22 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PokemonRepository extends ServiceEntityRepository
 {
+    public const PAGINATOR_PER_PAGE = 18;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Pokemon::class);
+    }
+
+    public function getPokemonPaginator(int $offset): Paginator
+    {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.number', 'ASC')
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
+            ->setFirstResult($offset)
+            ->getQuery();
+
+        return new Paginator($query);
     }
 
     public function save(Pokemon $entity, bool $flush = false): void

@@ -24,10 +24,10 @@ class Pokemon
     #[ORM\Column]
     private ?int $height = null;
 
-    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'pokemon')]
+    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'pokemon', fetch: "EAGER")]
     private Collection $types;
 
-    #[ORM\ManyToMany(targetEntity: Move::class, inversedBy: 'pokemon')]
+    #[ORM\ManyToMany(targetEntity: Move::class, inversedBy: 'pokemon', fetch: "EAGER")]
     private Collection $moves;
 
     #[ORM\Column(length: 255)]

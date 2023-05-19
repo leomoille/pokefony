@@ -4,19 +4,23 @@ namespace App\Controller;
 
 use App\Repository\PokemonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
     #[Route('/', name: 'app_home')]
-    public function index(PokemonRepository $pokemonRepository): Response
+    public function index(Request $request, PokemonRepository $pokemonRepository): Response
     {
-        $pokemons = $pokemonRepository->findAll();
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $pokemonRepository->getPokemonPaginator($offset);
 
         return $this->render('home/index.html.twig', [
-            'pokemons' => $pokemons,
+            'pokemons' => $paginator,
+            'previous' => $offset - PokemonRepository::PAGINATOR_PER_PAGE,
+            'next' => min(count($paginator), $offset + PokemonRepository::PAGINATOR_PER_PAGE),
         ]);
     }
 }
