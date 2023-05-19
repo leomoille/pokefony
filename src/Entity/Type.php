@@ -2,11 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ],
+    normalizationContext: ['groups' => ['type']]
+)]
 #[ORM\Entity(repositoryClass: TypeRepository::class)]
 class Type
 {
@@ -15,10 +26,18 @@ class Type
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * Type name
+     */
+    #[Groups(['pokemon', 'type'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Pokemon::class, mappedBy: 'types')]
+    /**
+     * Pokémon with this type
+     */
+    #[Groups(['type'])]
+    #[ORM\ManyToMany(targetEntity: Pokemon::class, mappedBy: 'types', fetch: "EAGER")]
     private Collection $pokemon;
 
     public function __construct()
