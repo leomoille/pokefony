@@ -17,11 +17,9 @@ class HomeController extends AbstractController
         $offset = max(0, $request->query->getInt('offset', 0));
         $paginator = $pokemonRepository->getPokemonPaginator($offset);
 
-        $get_pokemon_var = max(0, $request->query->getInt('get_pokemon', 0));
-        if($get_pokemon_var == 1){
-            $new_page_to_show = $pokemonRepository->findByNameField("bulbasaur");
-            var_dump($new_page_to_show);
-        }
+        $pokemon_var_name = $request->query->get('get_pokemon');
+        echo $pokemon_var_name;
+        
 
         return $this->render('home/index.html.twig', [
             'pokemons' => $paginator,
@@ -30,15 +28,4 @@ class HomeController extends AbstractController
         ]);
     }
 
-    protected function get_pokemon_list($pokemonRepository){
-
-        $new_page_to_show = $pokemonRepository->findByNameField("bulbasaur");
-        var_dump($new_page_to_show);
-
-        /*return $this->render('home/index.html.twig', [
-            'pokemons' => $new_page_to_show,
-            'previous' => 50 - PokemonRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($new_page_to_show), 50 + PokemonRepository::PAGINATOR_PER_PAGE),
-        ]);*/
-    }
 }
