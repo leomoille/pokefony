@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Pokemon;
+use App\SQL\SqlVerificator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -24,8 +25,14 @@ class PokemonRepository extends ServiceEntityRepository
         parent::__construct($registry, Pokemon::class);
     }
 
+    /**
+     * Cette fonction nous permet dans notre cas d'afficher un pokemon en particulier
+     */
     public function getPokemonPaginator(int $offset, string $pokemon_name = ''): Paginator
     {
+        if(SqlVerificator::verificatorSqlParameter($pokemon_name) == false){
+            $pokemon_name = '';
+        }
         $query = $this->createQueryBuilder('p')
             ->andWhere('p.name LIKE :pokemon_name')
             ->setParameter('pokemon_name', '%'.$pokemon_name.'%')
