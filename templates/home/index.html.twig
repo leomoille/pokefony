@@ -13,36 +13,36 @@
                         Filters
                     </button>
                 </h2>
-                <div id="flush-collapseOne" data-controller="searchpokemon" class="accordion-collapse collapse mt-4 mb-4"
+                <form id="flush-collapseOne" class="accordion-collapse collapse mt-4 mb-4"
                      data-bs-parent="#accordionFlushExample">
                     <p>Name</p>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="bulbasaur">
+                        <input type="text" name="pokemon_searched" class="form-control" placeholder="bulbasaur">
                     </div>
                     <p>Types</p>
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label" >
+                                    <input class="form-check-input" type="checkbox" name = "type" value="grass">
                                     Grass
                                 </label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
+                                    <input class="form-check-input" type="checkbox" name = "type" value="poison">
                                     Poison
                                 </label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
+                                    <input class="form-check-input" type="checkbox" name = "type" value="fire">
                                     Fire
                                 </label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
+                                    <input class="form-check-input" type="checkbox" name = "type" value="flying">
                                     Flying
                                 </label>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="col">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
+                                    <input class="form-check-input" type="checkbox" name = "type" value="water">
                                     Water
                                 </label>
                             </div>
@@ -140,8 +140,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary mt-4" data-action="click->searchpokemon#searchPokemon">Search 🔎</button>
-                </div>
+                    <input type='submit' class="btn btn-outline-primary mt-4" value = 'Search 🔎'></input>
+                </form>
             </div>
         </div>
         <div class="col-12 text-center mt-4 mb-4">

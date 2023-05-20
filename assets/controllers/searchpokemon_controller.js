@@ -16,10 +16,5 @@ export default class extends Controller {
 
     searchPokemon() {
         console.log("Hello, Stimulus!", this.element)
-        fetch('../../?get_pokemon=1')
-        .then(function(response) {
-                console.log(response)
-            })
-        .catch(err => console.log(err))
       }
 }

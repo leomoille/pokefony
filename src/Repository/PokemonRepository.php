@@ -27,6 +27,8 @@ class PokemonRepository extends ServiceEntityRepository
     public function getPokemonPaginator(int $offset, string $pokemon_name = ''): Paginator
     {
         $query = $this->createQueryBuilder('p')
+            ->andWhere('p.name LIKE :pokemon_name')
+            ->setParameter('pokemon_name', '%'.$pokemon_name.'%')
             ->orderBy('p.number', 'ASC')
             ->setMaxResults(self::PAGINATOR_PER_PAGE)
             ->setFirstResult($offset)
@@ -56,7 +58,8 @@ class PokemonRepository extends ServiceEntityRepository
 //    /**
 //     * @return Pokemon[] Returns an array of Pokemon objects
 //     */
-   /* public function findByNameField($value): array
+/*
+    public function findByNameField($value): array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.name = :val')
