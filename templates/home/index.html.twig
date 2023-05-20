@@ -12,14 +12,14 @@
             <div class="row">
                 {% if previous >= 0 %}
                     <div class="col">
-                        <a class="btn btn-dark w-100" href="{{ path('app_home', { offset: previous }) }}">
+                        <a class="btn btn-dark w-100" href="{{ path('app_home', { pokemon_searched: pokemon_search, offset: previous }) }}">
                             Previous
                         </a>
                     </div>
                 {% endif %}
                 {% if next < pokemons|length %}
                     <div class="col">
-                        <a class="btn btn-dark w-100" href="{{ path('app_home', { offset: next }) }}">
+                        <a class="btn btn-dark w-100" href="{{ path('app_home', { pokemon_searched: pokemon_search, offset: next }) }}">
                             Next
                         </a>
                     </div>
@@ -34,14 +34,14 @@
                 <div class="row">
                     {% if previous >= 0 %}
                         <div class="col">
-                            <a class="btn btn-dark w-100" href="{{ path('app_home', { offset: previous }) }}">
+                            <a class="btn btn-dark w-100" href="{{ path('app_home', { pokemon_searched: pokemon_search, offset: previous }) }}">
                                 Previous
                             </a>
                         </div>
                     {% endif %}
                     {% if next < pokemons|length %}
                         <div class="col">
-                            <a class="btn btn-dark w-100" href="{{ path('app_home', { offset: next }) }}">
+                            <a class="btn btn-dark w-100" href="{{ path('app_home', { pokemon_searched: pokemon_search, offset: next }) }}">
                                 Next
                             </a>
                         </div>

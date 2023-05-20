@@ -31,6 +31,7 @@ class HomeController extends AbstractController
         
 
         return $this->render('home/index.html.twig', [
+            'pokemon_search' => $pokemon_searched,
             'pokemons' => $paginator,
             'previous' => $offset - PokemonRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + PokemonRepository::PAGINATOR_PER_PAGE),
