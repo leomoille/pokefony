@@ -28,56 +28,7 @@
         </div>
         <div class="row">
             {% for pokemon in pokemons %}
-                <div class="col-12 col-sm-2">
-                    <div class="card mt-3 mb-3">
-                        <p class="position-absolute top-0 left-0 m-2 fw-bold">#{{ pokemon.number }}</p>
-                        <img src="{{ pokemon.sprite }}" class="card-img-top pokemon-sprite"
-                             alt="{{ pokemon.name | capitalize }}"
-                             loading="lazy">
-                        <div class="card-body">
-                            <h2 class="h5 card-title">{{ pokemon.name | capitalize }}</h2>
-                            <div class="row">
-                                {% for type in pokemon.types %}
-                                    <div class="col">
-                                        <span class="type {{ type.name }}">{{ type.name | capitalize }}</span>
-                                    </div>
-
-                                {% endfor %}
-                            </div>
-                            <div class="accordion accordion-flush mt-4" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapse{{ pokemon.name | capitalize }}"
-                                                aria-expanded="true"
-                                                aria-controls="collapse{{ pokemon.name | capitalize }}">
-                                            Moves
-                                        </button>
-                                    </h3>
-                                    <div id="collapse{{ pokemon.name | capitalize }}"
-                                         class="accordion-collapse collapse"
-                                         data-bs-parent="#accordion{{ pokemon.name | capitalize }}">
-                                        <div class="accordion-body">
-                                            <ul class="list-group list-group-flush">
-                                                {% for move in pokemon.moves %}
-                                                    <li class="list-group-item">{{ move.name | capitalize }}</li>
-                                                {% endfor %}
-                                            </ul>
-                                            <button class="mt-2 btn btn-secondary w-100" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse{{ pokemon.name | capitalize }}"
-                                                    aria-expanded="true"
-                                                    aria-controls="collapse{{ pokemon.name | capitalize }}">
-                                                Close moves
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% include('parts/_pokemon.html.twig') %}
             {% endfor %}
             <div class="col-12 text-center mt-4 mb-4">
                 <div class="row">
